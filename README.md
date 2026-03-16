@@ -113,11 +113,27 @@ pnpm lint
 
 ## 🌐 Deployment
 
-This project is optimized for deployment on **[Vercel](https://vercel.com/)**.
+This project is deployed on **[Render](https://render.com/)**.
 
-1. Push the repository to GitHub.
-2. Import it in the [Vercel Dashboard](https://vercel.com/new).
-3. Vercel will auto-detect Next.js and deploy instantly.
+A `render.yaml` blueprint is included in the repository for one-click setup.
+
+### Steps to Deploy on Render
+
+1. **Push** this repository to GitHub (already done ✅).
+2. Go to the [Render Dashboard](https://dashboard.render.com/) and sign in.
+3. Click **New → Web Service**.
+4. Connect your **GitHub account** and select the `Portfolio_prathmesh` repository.
+5. Render will auto-detect the `render.yaml` config. Confirm these settings:
+   - **Runtime:** Node
+   - **Build Command:** `npm install -g pnpm && pnpm install && pnpm build`
+   - **Start Command:** `pnpm start`
+   - **Region:** Singapore (or your preferred region)
+   - **Plan:** Free
+6. Click **Create Web Service** — Render will build and deploy automatically.
+7. Once deployed, your live URL will be:  
+   `https://portfolio-prathmesh-bhadane.onrender.com`
+
+> **Note:** On Render's free tier, the service may spin down after inactivity. The first request after idle will take ~30 seconds to respond.
 
 ---
 
@@ -133,7 +149,7 @@ To update it, replace `public/resume.pdf` with the latest version.
 **Prathmesh Bhadane**  
 Python Developer | Django Developer | Cloud & API Enthusiast
 
-- Portfolio: [prathmesh-bhadane.vercel.app](https://prathmesh-bhadane.vercel.app) *(update with your live URL)*
+- Portfolio: [portfolio-prathmesh-bhadane.onrender.com](https://portfolio-prathmesh-bhadane.onrender.com) *(update once deployed)*
 - Email: via the contact form on the portfolio
 
 ---

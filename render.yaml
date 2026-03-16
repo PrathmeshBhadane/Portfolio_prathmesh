@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: portfolio-prathmesh-bhadane
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: npm install -g pnpm && pnpm install && pnpm build
+    startCommand: pnpm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 3000
