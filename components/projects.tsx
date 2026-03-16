@@ -53,7 +53,7 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="py-24 bg-secondary/30">
+    <section id="projects" className="py-16 md:py-20 bg-secondary/30">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
@@ -78,29 +78,30 @@ export function Projects() {
         >
           {projects.map((project) => (
             <motion.div key={project.title} variants={itemVariants}>
-              <Card className="h-full overflow-hidden group hover:shadow-xl transition-all duration-300 bg-card border-border">
-                <div className="aspect-video bg-muted relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-muted flex items-center justify-center">
-                    <span className="text-4xl font-bold text-muted-foreground/30">
+              <Card className="h-full overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 bg-card border-border hover:border-primary/40 relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0" />
+                <div className="aspect-video bg-muted relative overflow-hidden z-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+                    <span className="text-4xl font-bold text-primary/20 transition-transform group-hover:scale-110 duration-500">
                       {project.title.charAt(0)}
                     </span>
                   </div>
-                  <div className="absolute inset-0 bg-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                    <Button asChild size="sm" variant="secondary" className="rounded-full">
+                  <div className="absolute inset-0 bg-background/60 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-4">
+                    <Button asChild size="sm" variant="outline" className="rounded-full border-primary/50 text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors group/btn">
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-2" />
+                        <Github className="h-4 w-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
                         GitHub
                       </a>
                     </Button>
-                    <Button asChild size="sm" className="rounded-full">
+                    <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/25 group/btn">
                       <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4 mr-2" />
+                        <ExternalLink className="h-4 w-4 mr-2 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-transform" />
                         Live Demo
                       </a>
                     </Button>
                   </div>
                 </div>
-                <CardContent className="p-6">
+                <CardContent className="p-6 relative z-10">
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {project.title}
                   </h3>

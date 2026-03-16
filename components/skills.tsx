@@ -4,38 +4,42 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { 
   Code2, 
-  Globe, 
-  Cloud, 
-  Database, 
-  GitBranch
+  Server, 
+  Database,
+  Wrench,
+  Clock
 } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 
 const skillCategories = [
   {
-    title: "Programming",
+    title: "Languages",
     icon: Code2,
-    skills: ["Python", "JavaScript", "HTML", "CSS"],
+    skills: ["C++", "Python", "Java", "JavaScript", "TypeScript", "CUDA"],
+    color: "pink",
   },
   {
-    title: "Web Frameworks",
-    icon: Globe,
-    skills: ["Django", "Flask", "REST APIs", "Bootstrap"],
-  },
-  {
-    title: "Cloud Services",
-    icon: Cloud,
-    skills: ["AWS", "Cloud Deployment", "Serverless"],
+    title: "Backend",
+    icon: Server,
+    skills: ["FastAPI", "Node.js", "Express", "Tailwind CSS", "REST APIs"],
+    color: "green",
   },
   {
     title: "Databases",
     icon: Database,
-    skills: ["PostgreSQL", "MySQL", "SQL"],
+    skills: ["PostgreSQL", "MongoDB", "MySQL", "Supabase", "Firebase"],
+    color: "red",
   },
   {
-    title: "Version Control",
-    icon: GitBranch,
-    skills: ["Git", "GitHub"],
+    title: "Tools",
+    icon: Wrench,
+    skills: ["Git", "Docker", "VS Code", "Postman", "Linux"],
+    color: "purple",
+  },
+  {
+    title: "Core Concepts",
+    icon: Clock,
+    skills: ["DSA", "API Design", "DB Fundamentals", "System Design Basics"],
+    color: "fuchsia", // magenta equivalent in Tailwind
   },
 ]
 
@@ -59,8 +63,8 @@ export function Skills() {
   }
 
   return (
-    <section id="skills" className="py-24">
-      <div className="container mx-auto px-6">
+    <section id="skills" className="py-16 md:py-24 bg-background">
+      <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -69,10 +73,10 @@ export function Skills() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Skills & Expertise
+            Skills & Tools
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Technologies and tools I use to build scalable web applications and backend systems.
+          <p className="text-muted-foreground text-lg">
+            Grouped by how I think, not by buzzwords
           </p>
         </motion.div>
 
@@ -80,32 +84,64 @@ export function Skills() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
         >
           {skillCategories.map((category) => {
             const Icon = category.icon
+            
+            // Map the colors to specific Tailwind classes to ensure they are compiled correctly
+            const colorMap: Record<string, { iconBgHover: string, iconTextHover: string, badgeHover: string, borderHover: string }> = {
+              pink: {
+                iconBgHover: "group-hover:bg-pink-500/20",
+                iconTextHover: "group-hover:text-pink-500",
+                badgeHover: "group-hover:bg-pink-500/10 group-hover:text-pink-700",
+                borderHover: "hover:border-pink-500/50"
+              },
+              green: {
+                iconBgHover: "group-hover:bg-green-500/20",
+                iconTextHover: "group-hover:text-green-500",
+                badgeHover: "group-hover:bg-green-500/10 group-hover:text-green-700",
+                borderHover: "hover:border-green-500/50"
+              },
+              red: {
+                iconBgHover: "group-hover:bg-red-500/20",
+                iconTextHover: "group-hover:text-red-500",
+                badgeHover: "group-hover:bg-red-500/10 group-hover:text-red-700",
+                borderHover: "hover:border-red-500/50"
+              },
+              purple: {
+                iconBgHover: "group-hover:bg-purple-500/20",
+                iconTextHover: "group-hover:text-purple-500",
+                badgeHover: "group-hover:bg-purple-500/10 group-hover:text-purple-700",
+                borderHover: "hover:border-purple-500/50"
+              },
+              fuchsia: {
+                iconBgHover: "group-hover:bg-fuchsia-500/20",
+                iconTextHover: "group-hover:text-fuchsia-500",
+                badgeHover: "group-hover:bg-fuchsia-500/10 group-hover:text-fuchsia-700",
+                borderHover: "hover:border-fuchsia-500/50"
+              }
+            }
+            
+            const styles = colorMap[category.color]
+
             return (
-              <motion.div key={category.title} variants={itemVariants}>
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300 bg-card border-border">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-accent/10">
-                        <Icon className="h-5 w-5 text-accent" />
+              <motion.div key={category.title} variants={itemVariants} className="h-full">
+                <div className={`h-full rounded-2xl bg-card border border-border/40 ${styles.borderHover} transition-all duration-300 p-6 flex flex-col items-start gap-4 shadow-sm hover:shadow-lg hover:-translate-y-1 group relative overflow-hidden`}>
+                  <div className={`p-3 rounded-lg bg-secondary/50 text-foreground group-hover:scale-110 ${styles.iconBgHover} ${styles.iconTextHover} transition-all`}>
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  
+                  <h3 className="font-bold text-foreground text-base mt-2 transition-colors group-hover:text-foreground">{category.title}</h3>
+                  
+                  <div className="flex flex-col gap-3 w-full mt-2">
+                    {category.skills.map((skill) => (
+                      <div key={skill} className={`px-3 py-2 rounded text-sm text-muted-foreground/90 bg-muted/40 font-medium w-full text-left transition-colors group-hover:bg-secondary/30`}>
+                        {skill}
                       </div>
-                      <h3 className="font-semibold text-foreground">{category.title}</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             )
           })}

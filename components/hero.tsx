@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { ArrowRight, Mail } from "lucide-react"
+import { ArrowRight, Mail, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useRef } from "react"
 
@@ -82,6 +82,12 @@ export function Hero() {
                 <a href="#contact">
                   <Mail className="mr-2 h-4 w-4" />
                   Contact Me
+                </a>
+              </Button>
+              <Button asChild variant="secondary" size="lg" className="rounded-full">
+                <a href="/resume.pdf" download="Prathmesh_Bhadane_Resume.pdf">
+                  <Download className="mr-2 h-4 w-4" />
+                  Download CV
                 </a>
               </Button>
             </motion.div>

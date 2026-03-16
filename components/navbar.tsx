@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
@@ -10,7 +10,6 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "Blog", href: "#blog" },
   { name: "Contact", href: "#contact" },
 ]
 
@@ -38,7 +37,7 @@ export function Navbar() {
     }
   }, [isMobileMenuOpen])
 
-  const menuVariants = {
+  const menuVariants: any = {
     closed: {
       x: "100%",
       transition: {
@@ -57,7 +56,7 @@ export function Navbar() {
     },
   }
 
-  const linkVariants = {
+  const linkVariants: any = {
     closed: { x: 50, opacity: 0 },
     open: (i: number) => ({
       x: 0,
@@ -79,7 +78,7 @@ export function Navbar() {
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-background/80 backdrop-blur-md shadow-sm border-b border-border"
+            ? "bg-background shadow-sm border-b border-border"
             : "bg-transparent"
         }`}
       >
@@ -87,11 +86,14 @@ export function Navbar() {
           <div className="flex items-center justify-between">
             <motion.a
               href="#home"
-              className="text-xl font-bold text-foreground"
+              className="text-xl font-bold text-foreground flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              JD
+              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm">
+                PB
+              </div>
+              <span className="hidden sm:inline-block">Prathmesh Bhadane</span>
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -100,46 +102,56 @@ export function Navbar() {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {link.name}
                 </motion.a>
               ))}
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button asChild variant="default" size="sm" className="rounded-full">
+                  <a href="/resume.pdf" download="Prathmesh_Bhadane_Resume.pdf">
+                    <Download className="mr-2 h-4 w-4" />
+                    Download CV
+                  </a>
+                </Button>
+              </motion.div>
             </div>
 
             {/* Mobile Menu Button */}
-            <motion.button
-              className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-full bg-secondary/80 backdrop-blur-sm"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              whileTap={{ scale: 0.9 }}
-              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            >
-              <AnimatePresence mode="wait">
-                {isMobileMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="h-5 w-5 text-foreground" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu className="h-5 w-5 text-foreground" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+            <div className="md:hidden flex items-center gap-2">
+              <motion.button
+                className="relative z-50 w-10 h-10 flex items-center justify-center rounded-full bg-secondary/80 backdrop-blur-sm"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                whileTap={{ scale: 0.9 }}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              >
+                <AnimatePresence mode="wait">
+                  {isMobileMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X className="h-5 w-5 text-foreground" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu className="h-5 w-5 text-foreground" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
           </div>
         </nav>
       </motion.header>
@@ -192,6 +204,20 @@ export function Navbar() {
                       </a>
                     </motion.li>
                   ))}
+                  <motion.li
+                    variants={linkVariants}
+                    initial="closed"
+                    animate="open"
+                    custom={navLinks.length}
+                    className="mt-4"
+                  >
+                    <Button asChild variant="default" className="w-full justify-center rounded-xl py-6">
+                      <a href="/resume.pdf" download="Prathmesh_Bhadane_Resume.pdf" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Download className="mr-2 h-5 w-5" />
+                        Download CV
+                      </a>
+                    </Button>
+                  </motion.li>
                 </ul>
               </nav>
 
