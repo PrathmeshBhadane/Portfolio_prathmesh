@@ -32,7 +32,7 @@ const skillCategories = [
   {
     title: "Tools",
     icon: Wrench,
-    skills: ["Git", "Docker", "VS Code", "Postman", "Linux", " AWS ", " Kubernetes"],
+    skills: ["Git", "Docker", "VS Code", "Postman", "Linux", " AWS ", " Kubernetes", "vercel", "render", "github"],
     color: "yellow",
   },
   {
