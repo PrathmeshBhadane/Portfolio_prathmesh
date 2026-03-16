@@ -127,7 +127,7 @@ export function Skills() {
 
             return (
               <motion.div key={category.title} variants={itemVariants}>
-                <div className={`min-h-[22rem] rounded-2xl bg-card border border-border/40 ${styles.borderHover} transition-all duration-300 p-6 flex flex-col items-start gap-4 shadow-sm hover:shadow-lg hover:-translate-y-1 group relative overflow-hidden`}>
+                <div className={`min-h-[28rem] rounded-2xl bg-card border border-border/40 ${styles.borderHover} transition-all duration-300 p-6 flex flex-col items-start gap-4 shadow-sm hover:shadow-lg hover:-translate-y-1 group relative overflow-hidden`}>
                   <div className={`p-3 rounded-lg bg-secondary/50 text-foreground group-hover:scale-110 ${styles.iconBgHover} ${styles.iconTextHover} transition-all`}>
                     <Icon className="h-6 w-6" />
                   </div>
@@ -137,7 +137,7 @@ export function Skills() {
                   <div
                     className="flex flex-col gap-3 w-full mt-2 overflow-y-auto pr-1"
                     style={{
-                      maxHeight: "13rem",
+                      maxHeight: "20rem",
                       scrollbarWidth: "thin",
                       scrollbarColor: "oklch(0.6 0.1 250 / 0.4) transparent",
                     }}
