@@ -80,17 +80,15 @@ export function Navbar() {
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <motion.a
+            <a
               href="#home"
               className="text-xl font-bold text-foreground flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm">
-                PB
+                प्र
               </div>
-              <span className="hidden sm:inline-block">Prathmesh Bhadane</span>
-            </motion.a>
+              <span className="hidden sm:inline-block"> प्रथम Backend</span>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
@@ -98,7 +96,7 @@ export function Navbar() {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-base font-bold text-muted-foreground hover:text-foreground transition-colors"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >

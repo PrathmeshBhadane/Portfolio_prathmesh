@@ -2,9 +2,9 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { 
-  Code2, 
-  Server, 
+import {
+  Code2,
+  Server,
   Database,
   Wrench,
   Clock
@@ -14,13 +14,13 @@ const skillCategories = [
   {
     title: "Languages",
     icon: Code2,
-    skills: ["C++", "Python", "Java", "JavaScript", "TypeScript", "CUDA"],
+    skills: ["C++", "Python", "C", "HTML/CSS"],
     color: "pink",
   },
   {
     title: "Backend",
     icon: Server,
-    skills: ["FastAPI", "Node.js", "Express", "Tailwind CSS", "REST APIs"],
+    skills: ["FastAPI", "FLASK", "Tailwind CSS", "REST APIs", "Django"],
     color: "green",
   },
   {
@@ -32,7 +32,7 @@ const skillCategories = [
   {
     title: "Tools",
     icon: Wrench,
-    skills: ["Git", "Docker", "VS Code", "Postman", "Linux"],
+    skills: ["Git", "Docker", "VS Code", "Postman", "Linux", " AWS ", " Kubernetes"],
     color: "yellow",
   },
   {
@@ -88,7 +88,7 @@ export function Skills() {
         >
           {skillCategories.map((category) => {
             const Icon = category.icon
-            
+
             // Map the colors to specific Tailwind classes to ensure they are compiled correctly
             const colorMap: Record<string, { iconBgHover: string, iconTextHover: string, badgeHover: string, borderHover: string }> = {
               pink: {
@@ -122,7 +122,7 @@ export function Skills() {
                 borderHover: "hover:border-blue-500/50"
               }
             }
-            
+
             const styles = colorMap[category.color]
 
             return (
@@ -131,9 +131,9 @@ export function Skills() {
                   <div className={`p-3 rounded-lg bg-secondary/50 text-foreground group-hover:scale-110 ${styles.iconBgHover} ${styles.iconTextHover} transition-all`}>
                     <Icon className="h-6 w-6" />
                   </div>
-                  
+
                   <h3 className="font-bold text-foreground text-base mt-2 transition-colors group-hover:text-foreground">{category.title}</h3>
-                  
+
                   <div className="flex flex-col gap-3 w-full mt-2">
                     {category.skills.map((skill) => (
                       <div key={skill} className={`px-3 py-2 rounded text-sm text-muted-foreground/90 bg-muted/40 font-medium w-full text-left transition-colors group-hover:bg-secondary/30`}>

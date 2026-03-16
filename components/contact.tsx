@@ -95,7 +95,7 @@ export function Contact() {
                     <Textarea id="message" placeholder="How can I help you?" rows={4} className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl resize-none shadow-sm" />
                   </div>
 
-                  <Button className="w-full mt-6 font-semibold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 rounded-xl py-6 shadow-lg shadow-primary/25 transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden relative group/btn" size="lg">
+                  <Button className="w-full mt-6 font-semibold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/0 rounded-xl py-6 shadow-lg shadow-primary/25 transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden relative group/btn" size="lg">
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 ease-out" />
                     <span className="relative z-10 flex items-center gap-2">
                       Send Message
