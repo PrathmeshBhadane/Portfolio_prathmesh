@@ -84,11 +84,11 @@ export function Contact() {
                 <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
                   <div className="space-y-2 group/input">
                     <label htmlFor="name" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Your Name</label>
-                    <Input id="name" placeholder="John Doe" className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl h-12 shadow-sm" />
+                    <Input id="name" placeholder="Enter your full name" className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl h-12 shadow-sm" />
                   </div>
                   <div className="space-y-2 group/input">
                     <label htmlFor="email" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Your Email</label>
-                    <Input id="email" type="email" placeholder="john@example.com" className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl h-12 shadow-sm" />
+                    <Input id="email" type="email" placeholder="Enter your email here " className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl h-12 shadow-sm" />
                   </div>
                   <div className="space-y-2 group/input">
                     <label htmlFor="message" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Message</label>
