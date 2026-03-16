@@ -94,12 +94,13 @@ export function CurrentlyWorking() {
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-primary/50" />
 
               <blockquote className="text-muted-foreground italic leading-relaxed mb-8 md:text-xl">
-                "I don't just write code — I strive to build <span className="text-primary font-medium not-italic">systems that solve real problems</span> effectively and gracefully."
+                "Any fool can write code that a computer can understand. <span className="text-primary font-medium not-italic">Good programmers write code that humans can understand.</span>"
+                <span className="block mt-3 text-sm not-italic text-muted-foreground/60">— Martin Fowler</span>
               </blockquote>
 
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-secondary/80 flex items-center justify-center text-foreground font-bold shrink-0">
-                  D
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">
+                  P
                 </div>
                 <div>
                   <h4 className="font-semibold text-sm text-foreground">Core Mindset</h4>
