@@ -33,13 +33,13 @@ const skillCategories = [
     title: "Tools",
     icon: Wrench,
     skills: ["Git", "Docker", "VS Code", "Postman", "Linux"],
-    color: "purple",
+    color: "yellow",
   },
   {
     title: "Core Concepts",
     icon: Clock,
     skills: ["DSA", "API Design", "DB Fundamentals", "System Design Basics"],
-    color: "fuchsia", // magenta equivalent in Tailwind
+    color: "blue", // was fuchsia (magenta)
   },
 ]
 
@@ -109,17 +109,17 @@ export function Skills() {
                 badgeHover: "group-hover:bg-red-500/10 group-hover:text-red-700",
                 borderHover: "hover:border-red-500/50"
               },
-              purple: {
-                iconBgHover: "group-hover:bg-purple-500/20",
-                iconTextHover: "group-hover:text-purple-500",
-                badgeHover: "group-hover:bg-purple-500/10 group-hover:text-purple-700",
-                borderHover: "hover:border-purple-500/50"
+              yellow: {
+                iconBgHover: "group-hover:bg-yellow-500/20",
+                iconTextHover: "group-hover:text-yellow-500",
+                badgeHover: "group-hover:bg-yellow-500/10 group-hover:text-yellow-700",
+                borderHover: "hover:border-yellow-500/50"
               },
-              fuchsia: {
-                iconBgHover: "group-hover:bg-fuchsia-500/20",
-                iconTextHover: "group-hover:text-fuchsia-500",
-                badgeHover: "group-hover:bg-fuchsia-500/10 group-hover:text-fuchsia-700",
-                borderHover: "hover:border-fuchsia-500/50"
+              blue: {
+                iconBgHover: "group-hover:bg-blue-500/20",
+                iconTextHover: "group-hover:text-blue-500",
+                badgeHover: "group-hover:bg-blue-500/10 group-hover:text-blue-700",
+                borderHover: "hover:border-blue-500/50"
               }
             }
             
