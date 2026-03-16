@@ -84,7 +84,7 @@ export function Skills() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 items-start"
         >
           {skillCategories.map((category) => {
             const Icon = category.icon
@@ -126,17 +126,24 @@ export function Skills() {
             const styles = colorMap[category.color]
 
             return (
-              <motion.div key={category.title} variants={itemVariants} className="h-full">
-                <div className={`h-full rounded-2xl bg-card border border-border/40 ${styles.borderHover} transition-all duration-300 p-6 flex flex-col items-start gap-4 shadow-sm hover:shadow-lg hover:-translate-y-1 group relative overflow-hidden`}>
+              <motion.div key={category.title} variants={itemVariants}>
+                <div className={`min-h-[22rem] rounded-2xl bg-card border border-border/40 ${styles.borderHover} transition-all duration-300 p-6 flex flex-col items-start gap-4 shadow-sm hover:shadow-lg hover:-translate-y-1 group relative overflow-hidden`}>
                   <div className={`p-3 rounded-lg bg-secondary/50 text-foreground group-hover:scale-110 ${styles.iconBgHover} ${styles.iconTextHover} transition-all`}>
                     <Icon className="h-6 w-6" />
                   </div>
 
                   <h3 className="font-bold text-foreground text-base mt-2 transition-colors group-hover:text-foreground">{category.title}</h3>
 
-                  <div className="flex flex-col gap-3 w-full mt-2">
+                  <div
+                    className="flex flex-col gap-3 w-full mt-2 overflow-y-auto pr-1"
+                    style={{
+                      maxHeight: "13rem",
+                      scrollbarWidth: "thin",
+                      scrollbarColor: "oklch(0.6 0.1 250 / 0.4) transparent",
+                    }}
+                  >
                     {category.skills.map((skill) => (
-                      <div key={skill} className={`px-3 py-2 rounded text-sm text-muted-foreground/90 bg-muted/40 font-medium w-full text-left transition-colors group-hover:bg-secondary/30`}>
+                      <div key={skill} className={`px-3 py-2 rounded text-sm text-muted-foreground/90 bg-muted/40 font-medium w-full text-left transition-colors group-hover:bg-secondary/30 shrink-0`}>
                         {skill}
                       </div>
                     ))}
