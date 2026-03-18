@@ -41,13 +41,24 @@ export function Hero() {
             transition={{ duration: 0.6 }}
             className="order-2 lg:order-1"
           >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="mb-8"
+            >
+              <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-base font-medium text-primary backdrop-blur-sm shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+                <span className="mr-2.5 flex h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(99,102,241,0.8)]"></span>
+                Open to Opportunities
+              </span>
+            </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-muted-foreground text-sm uppercase tracking-widest mb-4"
+              className="text-primary text-base uppercase tracking-widest mb-4 font-semibold"
             >
-              Python Developer | Django Developer | Cloud & API Enthusiast
+              Python Developer | Django & FastAPI Developer | Cloud & API Enthusiast
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -63,7 +74,7 @@ export function Hero() {
               transition={{ delay: 0.4 }}
               className="text-lg text-muted-foreground mb-8 max-w-lg leading-relaxed"
             >
-              I am a developer focused on building web applications using Python and Django. 
+              I am a developer focused on building web applications using Python and Django.
               I have experience creating REST APIs, backend systems, and working with cloud services.
             </motion.p>
             <motion.div
@@ -108,7 +119,7 @@ export function Hero() {
             >
               {/* Animated glowing border ring */}
               <motion.div
-                className="absolute inset-0 rounded-full"
+                className="absolute inset-0 rounded-full z-0"
                 style={{
                   background: "conic-gradient(from 0deg, oklch(0.55 0.15 250), oklch(0.65 0.12 280), oklch(0.55 0.15 250))",
                   padding: 3,
@@ -127,7 +138,7 @@ export function Hero() {
 
               {/* Soft outer glow */}
               <motion.div
-                className="absolute -inset-4 rounded-full opacity-40 blur-xl"
+                className="absolute -inset-4 rounded-full opacity-40 blur-xl z-[-1]"
                 style={{
                   background: "radial-gradient(circle, oklch(0.55 0.15 250 / 0.4), transparent 70%)",
                 }}
@@ -159,9 +170,9 @@ export function Hero() {
                   ease: "easeInOut",
                 }}
               >
-                <div className="w-full h-full bg-gradient-to-br from-muted to-secondary flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-[#f0f3ff] to-[#e4e9fc] flex items-center justify-center">
                   <motion.span
-                    className="text-6xl md:text-7xl font-bold text-muted-foreground/30"
+                    className="text-6xl md:text-7xl font-bold text-slate-400/50"
                     style={{ transform: "translateZ(20px)" }}
                   >
                     PB

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { SpaceBackground } from '@/components/space-background'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -40,10 +41,11 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          forcedTheme="light"
+          defaultTheme="dark"
+          forcedTheme="dark"
           disableTransitionOnChange
         >
+          <SpaceBackground />
           {children}
         </ThemeProvider>
         <Analytics />

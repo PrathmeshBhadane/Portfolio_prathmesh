@@ -12,7 +12,7 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-background relative">
+    <section id="contact" className="py-16 md:py-24 relative z-10">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
@@ -84,18 +84,18 @@ export function Contact() {
                 <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
                   <div className="space-y-2 group/input">
                     <label htmlFor="name" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Your Name</label>
-                    <Input id="name" placeholder="Enter your full name" className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl h-12 shadow-sm" />
+                    <Input id="name" placeholder="Enter your full name" className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl h-12 shadow-sm bg-card/60" />
                   </div>
                   <div className="space-y-2 group/input">
                     <label htmlFor="email" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Your Email</label>
-                    <Input id="email" type="email" placeholder="Enter your email here " className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl h-12 shadow-sm" />
+                    <Input id="email" type="email" placeholder="Enter your email here " className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl h-12 shadow-sm bg-card/60" />
                   </div>
                   <div className="space-y-2 group/input">
                     <label htmlFor="message" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Message</label>
-                    <Textarea id="message" placeholder="How can I help you?" rows={4} className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all rounded-xl resize-none shadow-sm" />
+                    <Textarea id="message" placeholder="How can I help you?" rows={4} className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl resize-none shadow-sm bg-card/60" />
                   </div>
 
-                  <Button className="w-full mt-6 font-semibold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/0 rounded-xl py-6 shadow-lg shadow-primary/25 transition-all hover:scale-[1.02] active:scale-[0.98] overflow-hidden relative group/btn" size="lg">
+                  <Button className="w-full mt-6 font-semibold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-primary rounded-xl py-6 shadow-[0_0_15px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.7)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] overflow-hidden relative group/btn" size="lg">
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 ease-out" />
                     <span className="relative z-10 flex items-center gap-2">
                       Send Message

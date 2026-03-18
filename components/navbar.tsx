@@ -16,11 +16,28 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
+      
+      const sections = navLinks.map(link => link.href.substring(1))
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= 100) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
     }
+    
+    // Call once to set initial active section
+    handleScroll()
+    
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -76,7 +93,7 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border/30 shadow-sm"
+        className="fixed top-0 left-0 right-0 z-50 bg-background/50 backdrop-blur-md border-b border-white/5 shadow-lg shadow-black/20"
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -84,7 +101,7 @@ export function Navbar() {
               href="#home"
               className="text-xl font-bold text-foreground flex items-center gap-2"
             >
-              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm">
+              <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm shadow-[0_0_15px_rgba(99,102,241,0.6)]">
                 प्र
               </div>
               <span className="hidden sm:inline-block"> प्रथम Backend</span>
@@ -96,11 +113,12 @@ export function Navbar() {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-base font-bold text-muted-foreground hover:text-foreground transition-colors"
+                  className={`relative text-base font-bold transition-colors group px-1 ${activeSection === link.href.substring(1) ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {link.name}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 shadow-[0_0_10px_rgba(99,102,241,0.8)] ${activeSection === link.href.substring(1) ? "w-full" : "w-0 group-hover:w-full"}`}></span>
                 </motion.a>
               ))}
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -191,9 +209,9 @@ export function Navbar() {
                       <a
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="group flex items-center gap-4 py-3 px-4 rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
+                        className={`group flex items-center gap-4 py-3 px-4 rounded-xl transition-all duration-200 ${activeSection === link.href.substring(1) ? "text-foreground bg-secondary" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"}`}
                       >
-                        <span className="w-2 h-2 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <span className={`w-2 h-2 rounded-full bg-primary transition-opacity ${activeSection === link.href.substring(1) ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                         <span className="text-base font-medium">{link.name}</span>
                       </a>
                     </motion.li>

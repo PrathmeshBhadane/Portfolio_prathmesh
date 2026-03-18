@@ -63,7 +63,7 @@ export function Skills() {
   }
 
   return (
-    <section id="skills" className="py-16 md:py-24 bg-background">
+    <section id="skills" className="py-16 md:py-24 relative z-10">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           ref={ref}
@@ -90,60 +90,60 @@ export function Skills() {
             const Icon = category.icon
 
             // Map the colors to specific Tailwind classes to ensure they are compiled correctly
-            const colorMap: Record<string, { iconBgHover: string, iconTextHover: string, badgeHover: string, borderHover: string }> = {
+            const colorMap: Record<string, { iconBgHover: string, iconTextHover: string, borderHover: string, cardShadowHover: string }> = {
               pink: {
                 iconBgHover: "group-hover:bg-pink-500/20",
                 iconTextHover: "group-hover:text-pink-500",
-                badgeHover: "group-hover:bg-pink-500/10 group-hover:text-pink-700",
-                borderHover: "hover:border-pink-500/50"
+                borderHover: "group-hover:border-pink-500/60",
+                cardShadowHover: "hover:shadow-[0_0_30px_rgba(236,72,153,0.2)]"
               },
               green: {
                 iconBgHover: "group-hover:bg-green-500/20",
                 iconTextHover: "group-hover:text-green-500",
-                badgeHover: "group-hover:bg-green-500/10 group-hover:text-green-700",
-                borderHover: "hover:border-green-500/50"
+                borderHover: "group-hover:border-green-500/60",
+                cardShadowHover: "hover:shadow-[0_0_30px_rgba(34,197,94,0.2)]"
               },
               red: {
                 iconBgHover: "group-hover:bg-red-500/20",
                 iconTextHover: "group-hover:text-red-500",
-                badgeHover: "group-hover:bg-red-500/10 group-hover:text-red-700",
-                borderHover: "hover:border-red-500/50"
+                borderHover: "group-hover:border-red-500/60",
+                cardShadowHover: "hover:shadow-[0_0_30px_rgba(239,68,68,0.2)]"
               },
               yellow: {
                 iconBgHover: "group-hover:bg-yellow-500/20",
                 iconTextHover: "group-hover:text-yellow-500",
-                badgeHover: "group-hover:bg-yellow-500/10 group-hover:text-yellow-700",
-                borderHover: "hover:border-yellow-500/50"
+                borderHover: "group-hover:border-yellow-500/60",
+                cardShadowHover: "hover:shadow-[0_0_30px_rgba(234,179,8,0.2)]"
               },
               blue: {
                 iconBgHover: "group-hover:bg-blue-500/20",
                 iconTextHover: "group-hover:text-blue-500",
-                badgeHover: "group-hover:bg-blue-500/10 group-hover:text-blue-700",
-                borderHover: "hover:border-blue-500/50"
+                borderHover: "group-hover:border-blue-500/60",
+                cardShadowHover: "hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]"
               }
             }
 
             const styles = colorMap[category.color]
 
             return (
-              <motion.div key={category.title} variants={itemVariants}>
-                <div className={`min-h-[28rem] rounded-2xl bg-card border border-border/40 ${styles.borderHover} transition-all duration-300 p-6 flex flex-col items-start gap-4 shadow-sm hover:shadow-lg hover:-translate-y-1 group relative overflow-hidden`}>
-                  <div className={`p-3 rounded-lg bg-secondary/50 text-foreground group-hover:scale-110 ${styles.iconBgHover} ${styles.iconTextHover} transition-all`}>
+              <motion.div key={category.title} variants={itemVariants} className={`relative group min-h-[28rem] rounded-2xl transition-all duration-500 hover:-translate-y-2 ${styles.cardShadowHover}`}>
+                {/* Inner Card */}
+                <div className={`absolute inset-0 rounded-2xl bg-card/40 backdrop-blur-xl border border-white/10 ${styles.borderHover} p-6 flex flex-col items-start gap-4 overflow-hidden z-10 transition-colors duration-500`}>
+                  <div className={`p-3 rounded-lg bg-black/20 border border-white/5 text-foreground group-hover:scale-110 shadow-inner ${styles.iconBgHover} ${styles.iconTextHover} transition-all`}>
                     <Icon className="h-6 w-6" />
                   </div>
 
-                  <h3 className="font-bold text-foreground text-base mt-2 transition-colors group-hover:text-foreground">{category.title}</h3>
+                  <h3 className="font-bold text-foreground text-base mt-2 drop-shadow-[0_0_5px_rgba(255,255,255,0.2)]">{category.title}</h3>
 
                   <div
                     className="flex flex-col gap-3 w-full mt-2 overflow-y-auto pr-1"
                     style={{
                       maxHeight: "20rem",
-                      scrollbarWidth: "thin",
-                      scrollbarColor: "oklch(0.6 0.1 250 / 0.4) transparent",
+                      scrollbarWidth: "none",
                     }}
                   >
                     {category.skills.map((skill) => (
-                      <div key={skill} className={`px-3 py-2 rounded text-sm text-muted-foreground/90 bg-muted/40 font-medium w-full text-left transition-colors group-hover:bg-secondary/30 shrink-0`}>
+                      <div key={skill} className={`px-3 py-2 rounded text-sm text-foreground/80 bg-white/5 border border-white/5 font-medium w-full text-left transition-colors group-hover:bg-white/10 shrink-0`}>
                         {skill}
                       </div>
                     ))}
