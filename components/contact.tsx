@@ -29,33 +29,33 @@ export function Contact() {
             </p>
 
             <div className="space-y-4">
-              <a href="mailto:your.email@example.com" className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border/10 hover:border-primary/50 transition-colors">
+              <a href="mailto:prathmesh.bhadane04@gmail.com" className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border/10 hover:border-primary/50 transition-colors">
                 <div className="p-3 bg-secondary/50 text-foreground rounded-lg group-hover:bg-primary/20 group-hover:text-primary transition-colors">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">Email</h4>
-                  <p className="text-xs text-muted-foreground">your.email@example.com</p>
+                  <p className="text-xs text-muted-foreground">prathmesh.bhadane04@gmail.com</p>
                 </div>
               </a>
 
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border/10 hover:border-primary/50 transition-colors">
+              <a href="https://github.com/PrathmeshBhadane" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border/10 hover:border-primary/50 transition-colors">
                 <div className="p-3 bg-secondary/50 text-foreground rounded-lg group-hover:bg-primary/20 group-hover:text-primary transition-colors">
                   <Github className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">GitHub</h4>
-                  <p className="text-xs text-muted-foreground">github.com/yourusername</p>
+                  <p className="text-xs text-muted-foreground">https://github.com/PrathmeshBhadane</p>
                 </div>
               </a>
 
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border/10 hover:border-primary/50 transition-colors">
+              <a href="https://www.linkedin.com/in/bhadaneprathmesh/" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border/10 hover:border-primary/50 transition-colors">
                 <div className="p-3 bg-secondary/50 text-foreground rounded-lg group-hover:bg-primary/20 group-hover:text-primary transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground text-sm">LinkedIn</h4>
-                  <p className="text-xs text-muted-foreground">linkedin.com/in/yourusername</p>
+                  <p className="text-xs text-muted-foreground">https://www.linkedin.com/in/bhadaneprathmesh/</p>
                 </div>
               </a>
             </div>
