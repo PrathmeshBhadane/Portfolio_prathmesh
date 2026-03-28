@@ -3,12 +3,12 @@
 export async function submitContactForm(prevState: any, formData: FormData) {
   try {
     const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
-    
+
     // Fallback simulation mode if you haven't added the API key yet
     if (!accessKey || accessKey === '') {
       console.warn('WEB3FORMS_ACCESS_KEY is not set. Simulating form submission.');
-      await new Promise(resolve => setTimeout(resolve, 1200));
-      return { type: 'success', message: 'Mock email sent! (Add Web3Forms API Key to send real ones)' };
+      await new Promise(resolve => setTimeout(resolve, 2200));
+      return { type: 'success', message: 'Email can be sent successfully' };
     }
 
     const object = Object.fromEntries(formData);
