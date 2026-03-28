@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, Github, Terminal, Database, Layout, Code2, ChevronRight, CheckCircle2, AlertTriangle, Cpu, Server } from "lucide-react"
+import { ExternalLink, Github, Terminal, Database, Layout, Code2, ChevronRight, CheckCircle2, AlertTriangle, Cpu, Server, MonitorPlay } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
@@ -11,7 +11,7 @@ const projects = [
     id: "ai-platform",
     title: "Nexus API Platform",
     subtitle: "Full-stack Developer Hub & API Gateway",
-    icon: Server, 
+    icon: Server,
     description: "A monolithic ecosystem featuring a highly optimized Python AI API backend cluster and a Next.js Developer Portal for provisioning API keys.",
     tags: ["Python", "FastAPI", "Next.js", "Docker", "Redis", "PostgreSQL"],
     github: "https://github.com/PrathmeshBhadane/NexusAPI",
@@ -25,10 +25,11 @@ const projects = [
         "Interactive Documentation (Auto cURL)",
         "Asynchronous ML Jobs via RabbitMQ"
       ],
-      tradeoffs: "Centralizing authentication at a gateway using Redis eliminates redundant database queries improving load capacity, but coordinating isolated services via Docker introduces baseline infrastructure complexity."
+      tradeoffs: "Centralizing authentication at a gateway using Redis eliminates redundant database queries improving load capacity, but coordinating isolated services via Docker introduces baseline infrastructure complexity.",
+      videoDemo: "/developer_portal_e2e_1774337007257.webp"
     }
-}
-,
+  }
+  ,
   {
     id: "django-recipe",
     title: "Django Recipe CRUD",
@@ -37,7 +38,7 @@ const projects = [
     description: "A full-stack web application built with Django that allows users to create, read, update, and delete recipes with authentication features.",
     tags: ["Django", "Python", "PostgreSQL", "Auth"],
     github: "#",
-    demo: "#",
+    //demo: "#",
     details: {
       problem: "Users needed a centralized platform to store and manage their personal recipes securely.",
       architecture: "Monolithic Django application with a PostgreSQL database, utilizing Django templates for the frontend.",
@@ -47,49 +48,8 @@ const projects = [
         "Image Uploads",
         "Search and Filtering"
       ],
-      tradeoffs: "Chose Server-Side Rendering (SSR) for SEO benefits, though it slightly limits dynamic client-side interactions."
-    }
-  },
-  {
-    id: "flask-todo",
-    title: "Flask ToDo App",
-    subtitle: "Simple productivity application",
-    icon: Layout,
-    description: "A simple productivity application built using Flask where users can manage tasks with a clean and structured interface.",
-    tags: ["Flask", "Python", "SQLite", "REST API"],
-    github: "#",
-    demo: "#",
-    details: {
-      problem: "A lightweight task manager was needed without the complexity of enterprise tools.",
-      architecture: "Flask lightweight backend exposing RESTful APIs with SQLite for fast, local storage.",
-      features: [
-        "Task Creation and Deletion",
-        "Status Toggling",
-        "REST API Endpoints",
-        "Responsive Interface"
-      ],
-      tradeoffs: "Used SQLite for quick setup, which is not suitable for large-scale distributed deployments."
-    }
-  },
-  {
-    id: "portfolio",
-    title: "Personal Portfolio",
-    subtitle: "Responsive developer portfolio",
-    icon: Code2,
-    description: "A responsive developer portfolio to showcase projects, skills, and blog posts with modern design and animations.",
-    tags: ["Next.js", "TailwindCSS", "Framer", "TypeScript"],
-    github: "#",
-    demo: "#",
-    details: {
-      problem: "Needed a digital footprint to effectively showcase skills, projects, and a unique design aesthetic.",
-      architecture: "Next.js App Router for static site generation, styled with TailwindCSS and animated via Framer Motion.",
-      features: [
-        "Deep Space Dark Theme",
-        "Glassmorphism UI",
-        "Scroll Animations",
-        "Developer Dashboard Mockup"
-      ],
-      tradeoffs: "Opted for complex client-side animations which requires careful performance optimization."
+      tradeoffs: "Chose Server-Side Rendering (SSR) for SEO benefits, though it slightly limits dynamic client-side interactions.",
+      videoDemo: ""
     }
   },
 ]
@@ -118,7 +78,7 @@ export function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-8 h-auto lg:h-[650px]">
+        <div className="grid lg:grid-cols-12 gap-8 h-auto lg:min-h-[650px]">
           {/* Left Sidebar - Project List */}
           <div className="lg:col-span-4 flex flex-col gap-3">
             {projects.map((project, idx) => {
@@ -132,11 +92,10 @@ export function Projects() {
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
                   onClick={() => setActiveProject(project)}
-                  className={`w-full text-left p-4 rounded-xl flex items-center justify-between group transition-all duration-300 border ${
-                    isActive 
-                      ? "bg-primary/10 border-primary/50 shadow-[0_0_20px_rgba(99,102,241,0.2)]" 
+                  className={`w-full text-left p-4 rounded-xl flex items-center justify-between group transition-all duration-300 border ${isActive
+                      ? "bg-primary/10 border-primary/50 shadow-[0_0_20px_rgba(99,102,241,0.2)]"
                       : "bg-card/50 backdrop-blur-md border-border hover:bg-card hover:border-primary/30"
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-4">
                     <div className={`p-2 rounded-lg transition-colors ${isActive ? "bg-primary text-primary-foreground shadow-[0_0_10px_rgba(99,102,241,0.6)]" : "bg-secondary text-muted-foreground group-hover:text-primary"}`}>
@@ -168,7 +127,7 @@ export function Projects() {
               </div>
             </div>
 
-            <CardContent className="p-0 flex-1 relative overflow-y-auto">
+            <CardContent className="p-0 flex-1 relative overflow-visible">
               {/* Custom scrollbar styling wrapper if needed, but native scrollbar suffices or we define in CSS */}
               <AnimatePresence mode="wait">
                 <motion.div
@@ -182,8 +141,35 @@ export function Projects() {
                   {/* Header */}
                   <div>
                     <h2 className="text-3xl font-bold text-foreground mb-3">{activeProject.title}</h2>
+
+                    {/* Video Demo */}
+                    {activeProject.details.videoDemo && (
+                      <div className="mb-6 rounded-xl overflow-hidden border border-white/10 shadow-[0_0_20px_rgba(99,102,241,0.15)] bg-black/50 aspect-video relative">
+                        {activeProject.details.videoDemo.endsWith('.mp4') ? (
+                          <video
+                            src={activeProject.details.videoDemo}
+                            controls
+                            className="w-full h-full outline-none"
+                          />
+                        ) : activeProject.details.videoDemo.endsWith('.webp') ? (
+                          <img
+                            src={activeProject.details.videoDemo}
+                            alt={`${activeProject.title} Demo`}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <iframe
+                            src={activeProject.details.videoDemo}
+                            title={`${activeProject.title} Demo`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full border-0 absolute inset-0"
+                          />
+                        )}
+                      </div>
+                    )}
                     <p className="text-muted-foreground text-lg mb-6">{activeProject.description}</p>
-                    
+
                     <div className="flex flex-wrap gap-2 mb-6">
                       {activeProject.tags.map(tag => (
                         <span key={tag} className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-sm font-medium shadow-[0_0_10px_rgba(99,102,241,0.1)]">
@@ -252,6 +238,7 @@ export function Projects() {
                       {activeProject.details.tradeoffs}
                     </p>
                   </div>
+
                 </motion.div>
               </AnimatePresence>
             </CardContent>
