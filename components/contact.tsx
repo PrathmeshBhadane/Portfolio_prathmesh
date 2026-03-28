@@ -1,15 +1,34 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { Mail, Github, Linkedin, Send } from "lucide-react"
+import { useRef, useTransition, useState } from "react"
+import { Mail, Github, Linkedin, Send, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
+import { submitContactForm } from "@/app/actions/contact"
+import { toast } from "sonner"
 
 export function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [isPending, startTransition] = useTransition()
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+
+    startTransition(async () => {
+      const result = await submitContactForm(null, formData);
+      if (result.type === 'error') {
+        toast.error(result.message);
+      } else {
+        toast.success(result.message);
+        form.reset();
+      }
+    });
+  };
 
   return (
     <section id="contact" className="py-16 md:py-24 relative z-10">
@@ -81,25 +100,34 @@ export function Contact() {
                   Send a Message
                 </h3>
 
-                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-5" onSubmit={handleSubmit}>
                   <div className="space-y-2 group/input">
                     <label htmlFor="name" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Your Name</label>
-                    <Input id="name" placeholder="Enter your full name" className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl h-12 shadow-sm bg-card/60" />
+                    <Input id="name" name="name" required placeholder="Enter your full name" className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl h-12 shadow-sm bg-card/60" />
                   </div>
                   <div className="space-y-2 group/input">
                     <label htmlFor="email" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Your Email</label>
-                    <Input id="email" type="email" placeholder="Enter your email here " className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl h-12 shadow-sm bg-card/60" />
+                    <Input id="email" name="email" required type="email" placeholder="Enter your email here " className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl h-12 shadow-sm bg-card/60" />
                   </div>
                   <div className="space-y-2 group/input">
                     <label htmlFor="message" className="text-sm font-semibold text-foreground/80 transition-colors group-focus-within/input:text-primary pl-1">Message</label>
-                    <Textarea id="message" placeholder="How can I help you?" rows={4} className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl resize-none shadow-sm bg-card/60" />
+                    <Textarea id="message" name="message" required placeholder="How can I help you?" rows={4} className="bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary focus:ring-[3px] focus:ring-primary/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all duration-300 rounded-xl resize-none shadow-sm bg-card/60" />
                   </div>
 
-                  <Button className="w-full mt-6 font-semibold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-primary rounded-xl py-6 shadow-[0_0_15px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.7)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] overflow-hidden relative group/btn" size="lg">
+                  <Button disabled={isPending} className="w-full mt-6 font-semibold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-primary rounded-xl py-6 shadow-[0_0_15px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(34,211,238,0.7)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] overflow-hidden relative group/btn disabled:opacity-70 disabled:pointer-events-none" size="lg">
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 ease-out" />
                     <span className="relative z-10 flex items-center gap-2">
-                      Send Message
-                      <Send className="w-4 h-4 group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                      {isPending ? (
+                        <>
+                          Sending...
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <Send className="w-4 h-4 group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                        </>
+                      )}
                     </span>
                   </Button>
                 </form>
