@@ -2,11 +2,33 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ExternalLink, Github, Terminal, Database, Layout, Code2, ChevronRight, CheckCircle2, AlertTriangle, Cpu } from "lucide-react"
+import { ExternalLink, Github, Terminal, Database, Layout, Code2, ChevronRight, CheckCircle2, AlertTriangle, Cpu, Server } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
 const projects = [
+  {
+    id: "ai-platform",
+    title: "AI Microservices Platform",
+    subtitle: "Full-stack Developer Hub & API Gateway",
+    icon: Server, 
+    description: "A monolithic ecosystem featuring a highly optimized Python AI API backend cluster and a Next.js Developer Portal for provisioning API keys.",
+    tags: ["Python", "FastAPI", "Next.js", "Docker", "Redis", "PostgreSQL"],
+    github: "#",
+    demo: "#",
+    details: {
+      problem: "Needed a centralized developer hub to securely provide isolated API keys, manage rate limits natively, and run generative AI inference jobs asynchronously.",
+      architecture: "Python FastAPI microservices clustered behind an Nginx API Gateway. Orchestrated via Docker Compose with Redis for stateless rate limiting and RabbitMQ for distributed message queues. Next.js 15 for the frontend dashboard.",
+      features: [
+        "Service-Scoped API Keys",
+        "Real-Time Bandwidth Analytics",
+        "Interactive Documentation (Auto cURL)",
+        "Asynchronous ML Jobs via RabbitMQ"
+      ],
+      tradeoffs: "Centralizing authentication at a gateway using Redis eliminates redundant database queries improving load capacity, but coordinating isolated services via Docker introduces baseline infrastructure complexity."
+    }
+}
+,
   {
     id: "django-recipe",
     title: "Django Recipe CRUD",
