@@ -9,12 +9,12 @@ import { Button } from "@/components/ui/button"
 const projects = [
   {
     id: "ai-platform",
-    title: "AI Microservices Platform",
+    title: "Nexus API Platform",
     subtitle: "Full-stack Developer Hub & API Gateway",
     icon: Server, 
     description: "A monolithic ecosystem featuring a highly optimized Python AI API backend cluster and a Next.js Developer Portal for provisioning API keys.",
     tags: ["Python", "FastAPI", "Next.js", "Docker", "Redis", "PostgreSQL"],
-    github: "#",
+    github: "https://github.com/PrathmeshBhadane/NexusAPI",
     demo: "#",
     details: {
       problem: "Needed a centralized developer hub to securely provide isolated API keys, manage rate limits natively, and run generative AI inference jobs asynchronously.",
