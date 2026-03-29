@@ -47,6 +47,9 @@ export function Education() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Education
           </h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+            My academic journey and qualifications that have shaped my technical foundation.
+          </p>
         </motion.div>
 
         <div className="relative border-l border-border/50 ml-4 md:ml-0 md:pl-0">
@@ -59,29 +62,29 @@ export function Education() {
               className={`md:pl-10 pl-6 relative group ${index !== educations.length - 1 ? "pb-12" : ""}`}
             >
               {/* Timeline Dot */}
-              <div className="absolute w-10 h-10 bg-card rounded-full -left-[1.3rem] top-0 border-2 border-accent/40 flex items-center justify-center p-2 group-hover:border-accent transition-colors shadow-lg z-10">
-                <GraduationCap className="w-5 h-5 text-accent" />
+              <div className="absolute w-10 h-10 bg-card rounded-full -left-[1.3rem] top-0 border-2 border-primary/40 flex items-center justify-center p-2 group-hover:border-primary transition-colors shadow-lg z-10">
+                <GraduationCap className="w-5 h-5 text-primary" />
               </div>
 
               {/* Education Card */}
-              <div className="rounded-2xl bg-card/40 backdrop-blur-xl border border-white/10 hover:border-accent/50 transition-all p-6 md:p-8 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] relative overflow-hidden shadow-lg group/card">
+              <div className="rounded-2xl bg-card/40 backdrop-blur-xl border border-white/10 hover:border-primary/50 transition-all p-6 md:p-8 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] relative overflow-hidden shadow-lg group/card">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-foreground mb-1 leading-snug">
                       {edu.degree}
                     </h3>
-                    <a href="#" className="text-accent hover:text-accent/80 transition-colors font-medium text-lg">
+                    <a href="#" className="text-primary hover:text-accent transition-colors font-medium text-lg">
                       {edu.institution}
                     </a>
                   </div>
 
                   <div className="flex flex-col gap-2 text-sm text-muted-foreground bg-white/5 border border-white/5 py-2 px-4 rounded-xl backdrop-blur-sm self-start shrink-0">
                     <span className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-accent" />
+                      <Calendar className="w-4 h-4 text-primary" />
                       {edu.date}
                     </span>
                     <span className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-accent" />
+                      <MapPin className="w-4 h-4 text-primary" />
                       {edu.location}
                     </span>
                   </div>
@@ -95,7 +98,7 @@ export function Education() {
                 <ul className="space-y-4 text-muted-foreground text-sm md:text-base">
                   {edu.bullets.map((bullet, idx) => (
                     <li key={idx} className="flex gap-3 items-start">
-                      <span className="w-1.5 h-1.5 bg-accent/80 rounded-full mt-2.5 shrink-0"></span>
+                      <span className="w-1.5 h-1.5 bg-primary/80 rounded-full mt-2.5 shrink-0"></span>
                       <p>{bullet}</p>
                     </li>
                   ))}
